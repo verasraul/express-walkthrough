@@ -82,9 +82,9 @@ app.get('/fruits/:name', (req, res) => {
             return null;
         }
     }
-    const nameResult = fruits.filter(checkName)
+    const fruitFilter = fruits.filter(checkName)
 
-    // let fruitFilter = fruits.map((index) => {
+    // let fruitMapping = fruits.map((index) => {
     //     let name  = req.params.name;
     //     if(index.name == name) {
     //         return index;
@@ -93,7 +93,7 @@ app.get('/fruits/:name', (req, res) => {
     //     }
         
     // })
-    res.send(nameResult)
+    res.send(fruitFilter)
 })
 
 
