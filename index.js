@@ -74,15 +74,14 @@ app.get('/fruits', (req, res) => {
 app.get('/fruits/:name', (req, res) => {
     let getName  = req.params.name;
     // console.log('Fruit Name = ', name)
-    const checkName = (index) => {
-        // return index.name;
+    const fruitName = (index) => {
         if(index.name == getName ) {
             return index;
         }else{
             return null;
         }
     }
-    const fruitFilter = fruits.filter(checkName)
+    const fruitFilter = fruits.filter(fruitName);
 
     // let fruitMapping = fruits.map((index) => {
     //     let name  = req.params.name;
