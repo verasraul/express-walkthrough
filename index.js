@@ -41,7 +41,7 @@ app.get('/ping', (req, res) => {
 })
 
 app.get('/greet/:name', (req, res) => {
-    let name = req.params.name.toString();
+    let name = req.params.name;
     // console.log('Hello there', name)
     res.send(`Hello there ${name}` ) 
 })
@@ -51,16 +51,15 @@ app.get('/five', (req, res) => {
 })
 
 app.get('/evens/:n', (req,res) => {
-    let num = req.params.n.parseInt()
+    let n = req.params.n;
+    console.log('n =', n);
+    let num = parseInt(n);
     console.log(num)
-    function printEven(num) {
-        for (let i=1; i<num; i++) {
-          if(i % 2 === 0) {
-            console.log(i);
-          }
-        }
-      }
-    res.send([])
+    let newArray=[];
+    for(let i=2; i<= n; i++) {
+        i % 2 == 0 ? newArray.push(i) : null;
+    }
+    res.send(newArray)
 })
 
 app.get('/namelength/:name', (req, res) =>{
@@ -71,6 +70,33 @@ app.get('/namelength/:name', (req, res) =>{
 app.get('/fruits', (req, res) => {
     res.send(fruits);
 })
+
+app.get('/fruits/:name', (req, res) => {
+    let getName  = req.params.name;
+    // console.log('Fruit Name = ', name)
+    const checkName = (index) => {
+        // return index.name;
+        if(index.name == getName ) {
+            return index;
+        }else{
+            return null;
+        }
+    }
+    const nameResult = fruits.filter(checkName)
+
+    // let fruitFilter = fruits.map((index) => {
+    //     let name  = req.params.name;
+    //     if(index.name == name) {
+    //         return index;
+    //     }else{
+    //         return null;
+    //     }
+        
+    // })
+    res.send(nameResult)
+})
+
+
 
 
 app.listen(PORT, () => console.log(`running on port ${PORT}`));
